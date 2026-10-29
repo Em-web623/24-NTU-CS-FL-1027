@@ -1,0 +1,75 @@
+# ESP32 Dual LED PWM Fading
+
+## Project Overview
+This project demonstrates Pulse Width Modulation (PWM) using an ESP32 microcontroller to control the brightness of two LEDs. The Red LED and Blue LED fade in and fade out simultaneously by gradually changing their duty cycles.
+
+## Task 1: Control Two LEDs Using PWM
+
+### Objectives
+- Control two LEDs using ESP32 PWM.
+- Gradually increase LED brightness (fade in).
+- Gradually decrease LED brightness (fade out).
+- Understand PWM frequency, resolution and duty cycle.
+
+### Components Used
+- ESP32 DevKit
+- Red LED
+- Blue LED
+- 2 × 220Ω resistors
+- Breadboard and jumper wires
+- Wokwi Simulator
+- VS Code with PlatformIO
+
+### Pin Connections
+
+| Component | ESP32 GPIO |
+|---|---|
+| Red LED | GPIO 5 |
+| Blue LED | GPIO 23 |
+| LED Ground | GND |
+
+Both LEDs are connected through 220Ω resistors to protect them from excessive current.
+
+### PWM Configuration
+
+| Parameter | Value |
+|---|---|
+| PWM Frequency | 5000 Hz |
+| PWM Resolution | 8-bit |
+| Minimum Duty Cycle | 0 |
+| Maximum Duty Cycle | 255 |
+| Duty Cycle Range | 0%–100% |
+| PWM Channels | 0 and 1 |
+
+### Working Principle
+The ESP32 generates PWM signals on two separate channels. The duty cycle changes from 0 to 255, increasing the brightness of both LEDs. After reaching maximum brightness, the duty cycle decreases from 255 to 0, turning both LEDs off gradually.
+
+A delay of 10 milliseconds between updates creates a smooth fading effect.
+
+### Expected Output
+- Both LEDs start with minimum brightness.
+- Red and Blue LEDs gradually become brighter.
+- Both LEDs reach maximum brightness.
+- Their brightness gradually decreases until they turn off.
+- The cycle repeats continuously.
+
+### Learning Outcomes
+- Understanding PWM on ESP32.
+- Configuring PWM channels and frequency.
+- Controlling LED brightness using duty cycle.
+- Implementing fading effects using loops.
+- Working with ESP32 in Wokwi and PlatformIO.
+
+## Tools and Technologies
+- C++
+- Arduino Framework
+- ESP32
+- PlatformIO
+- Wokwi Simulator
+
+## Author
+IoT homework 2 -task 1 completed
+24-ntu-cs-fl-1027
+eman fatima
+## wokwi online like:
+https://wokwi.com/projects/479230811724776449
