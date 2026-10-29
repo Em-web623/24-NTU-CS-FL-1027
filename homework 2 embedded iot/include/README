@@ -1,34 +1,37 @@
-# ESP32 Dual LED PWM Fading
+# ESP32 PWM Parameters on OLED
 
 ## Project Overview
-This project demonstrates Pulse Width Modulation (PWM) using an ESP32 microcontroller to control the brightness of two LEDs. The Red LED and Blue LED fade in and fade out simultaneously by gradually changing their duty cycles.
+This project extends the dual LED PWM fading task by adding an SSD1306 I2C OLED display. The ESP32 controls the brightness of a Red LED and a Blue LED using PWM and displays their current duty cycles and PWM frequency on the OLED screen.
 
-## Task 1: Control Two LEDs Using PWM
+## Task 2: Display PWM Parameters on OLED
 
 ### Objectives
-- Control two LEDs using ESP32 PWM.
-- Gradually increase LED brightness (fade in).
-- Gradually decrease LED brightness (fade out).
-- Understand PWM frequency, resolution and duty cycle.
+- Display the Red LED duty cycle as a percentage.
+- Display the Red LED PWM frequency.
+- Display the Blue LED duty cycle as a percentage.
+- Display the Blue LED PWM frequency.
+- Update the OLED values as the LEDs fade.
+- Ensure the displayed parameters match the values used in the program.
 
 ### Components Used
 - ESP32 DevKit
 - Red LED
 - Blue LED
 - 2 × 220Ω resistors
-- Breadboard and jumper wires
+- SSD1306 I2C OLED display (128 × 64)
 - Wokwi Simulator
 - VS Code with PlatformIO
 
 ### Pin Connections
 
-| Component | ESP32 GPIO |
+| Component | ESP32 Pin |
 |---|---|
 | Red LED | GPIO 5 |
 | Blue LED | GPIO 23 |
-| LED Ground | GND |
-
-Both LEDs are connected through 220Ω resistors to protect them from excessive current.
+| OLED SDA | GPIO 21 |
+| OLED SCL | GPIO 22 |
+| OLED VCC | 3.3V |
+| OLED GND | GND |
 
 ### PWM Configuration
 
@@ -36,40 +39,47 @@ Both LEDs are connected through 220Ω resistors to protect them from excessive c
 |---|---|
 | PWM Frequency | 5000 Hz |
 | PWM Resolution | 8-bit |
-| Minimum Duty Cycle | 0 |
-| Maximum Duty Cycle | 255 |
+| Maximum Duty Value | 255 |
 | Duty Cycle Range | 0%–100% |
-| PWM Channels | 0 and 1 |
+| Red LED PWM Channel | 0 |
+| Blue LED PWM Channel | 1 |
+| OLED I2C Address | 0x3C |
 
 ### Working Principle
-The ESP32 generates PWM signals on two separate channels. The duty cycle changes from 0 to 255, increasing the brightness of both LEDs. After reaching maximum brightness, the duty cycle decreases from 255 to 0, turning both LEDs off gradually.
+The ESP32 generates PWM signals on two separate channels to control LED brightness. The duty cycle gradually increases from 0 to 255 and then decreases from 255 to 0.
 
-A delay of 10 milliseconds between updates creates a smooth fading effect.
+The OLED displays the current duty cycle percentage and configured PWM frequency for each LED. The displayed values refresh continuously as the duty cycles change.
+
+The duty cycle percentage is calculated using:
+
+`Duty Cycle (%) = (Current Duty Value / 255) × 100`
 
 ### Expected Output
-- Both LEDs start with minimum brightness.
-- Red and Blue LEDs gradually become brighter.
-- Both LEDs reach maximum brightness.
-- Their brightness gradually decreases until they turn off.
-- The cycle repeats continuously.
+The OLED displays:
+- Red LED duty cycle and frequency.
+- Blue LED duty cycle and frequency.
+- Continuously updated duty cycle percentages while both LEDs fade in and out.
 
 ### Learning Outcomes
-- Understanding PWM on ESP32.
-- Configuring PWM channels and frequency.
-- Controlling LED brightness using duty cycle.
-- Implementing fading effects using loops.
-- Working with ESP32 in Wokwi and PlatformIO.
+- Understanding PWM and duty cycle.
+- Controlling multiple LEDs using ESP32 PWM channels.
+- Interfacing an SSD1306 OLED using I2C.
+- Displaying real-time parameter values.
+- Integrating hardware control with an OLED interface.
 
-## Tools and Technologies
+### Tools and Technologies
 - C++
 - Arduino Framework
 - ESP32
 - PlatformIO
 - Wokwi Simulator
+- Adafruit SSD1306 Library
+- Adafruit GFX Library
+
+## Wokwi Simulation
+**Project Link:** Add your working Wokwi project link here.
 
 ## Author
-IoT homework 2 -task 1 completed
-24-ntu-cs-fl-1027
-eman fatima
-## wokwi online like:
-https://wokwi.com/projects/479230811724776449
+IoT Lab Project – Task 2
+
+https://wokwi.com/projects/479233283509594113
