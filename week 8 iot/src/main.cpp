@@ -5,20 +5,22 @@
 void setup()
 {
     Serial.begin(115200);
-    Serial.println("ESP32 DAC LED Test");
+    Serial.println("ESP32 DAC Brightness Fade (Program 2)");
 }
 
 void loop()
 {
-    int values[] = {0, 64, 128, 192, 255};
-
-    for (int i = 0; i < 5; i++)
+    // Fade up from 0 (off) to 255 (maximum brightness)
+    for (int i = 0; i <= 255; i++)
     {
-        dacWrite(DAC_PIN, values[i]);
+        dacWrite(DAC_PIN, i);
+        delay(10);
+    }
 
-        Serial.print("DAC Value: ");
-        Serial.println(values[i]);
-
-        delay(2000);
+    // Fade down from 255 (maximum brightness) to 0 (off)
+    for (int i = 255; i >= 0; i--)
+    {
+        dacWrite(DAC_PIN, i);
+        delay(10);
     }
 }
