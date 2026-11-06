@@ -1,6 +1,6 @@
 #include <Arduino.h>
 
-#define DAC_PIN 25
+#define DAC_PIN 26
 
 void setup()
 {
@@ -21,6 +21,6 @@ void loop()
     for (int i = 255; i >= 0; i--)
     {
         dacWrite(DAC_PIN, i);
-        delay(50);
+        delay(5);
     }
 }
